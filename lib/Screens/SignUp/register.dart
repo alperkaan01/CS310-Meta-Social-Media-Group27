@@ -10,14 +10,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:proj_v2/login.dart';
 
-class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _RegisterState extends State<Register> {
+class _SignUpState extends State<SignUp> {
   late String username;
   late String name;
   late String password;
