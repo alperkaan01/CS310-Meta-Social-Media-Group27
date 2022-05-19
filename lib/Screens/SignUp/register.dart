@@ -136,7 +136,7 @@ class _RegisterState extends State<Register> {
                           ),
                         )),
                         Positioned(child: Container(
-                          height: 580,
+                          height: 610,
                           width: size.width,
                           decoration: BoxDecoration(
                             color: Colors.lightBlue.withOpacity(0.4),
