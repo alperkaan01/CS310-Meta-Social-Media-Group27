@@ -85,7 +85,7 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-     
+     backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: Center(
