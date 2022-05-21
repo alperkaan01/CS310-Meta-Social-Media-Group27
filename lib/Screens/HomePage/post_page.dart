@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:proj_v2/colors.dart';
-import 'package:proj_v2/Homepage.dart';
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
 
@@ -23,36 +22,9 @@ class _PostPageState extends State<PostPage> {
         .of(context)
         .size;
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: [
 
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: AppColor.gradientSecond,),
-            label: '',
-            backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
 
-
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle_outline, color: AppColor.gradientSecond,
-            ),
-            label: 'Share',
-            backgroundColor: Colors.blue,
-
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: AppColor.gradientSecond,),
-            label: 'Profile',
-            backgroundColor: Colors.blue,
-
-          ),
-
-        ],
-      ),
-      backgroundColor: AppColor.gradientSecond,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -72,38 +44,25 @@ class _PostPageState extends State<PostPage> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            radius: 60,
+                            radius: 70,
                           ),
                         ),
                         const SizedBox(height: 20,),
-                        const Text("Username", style: TextStyle(fontSize: 20),),
-                        Row(
-                          children: [
-                            FlatButton(onPressed: () {
-                              Navigator.pop(context,
-                                  MaterialPageRoute(builder: (context) {
-                                    return HomePage();
-                                  }));
-                            }, child: Row(
-                              children: [
+                        Container(child: Center(child: const Text("@Username",
+                          style: TextStyle(fontSize: 20),)),
 
+                          width: 150,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: AppColor.WelcomeBackground,
 
-                                Text("NFT"),
-                              ],
-
-                            )),
-                            FlatButton(onPressed: () {
-
-                            }, child: Row(
-                              children: [
-
-
-                                Text("POST"),
-                              ],
-
-                            ))
-                          ],
+                            borderRadius:  BorderRadius.circular(50),
+                          )
                         ),
+                        const SizedBox(height: 40,),
+
+
+
                       ],
                     ),
                   ],
@@ -119,19 +78,11 @@ class _PostPageState extends State<PostPage> {
                     width: size.width,
                     height: 800,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          //AppColor.gradientFirst.withOpacity(0.5),
-                          //AppColor.gradientSecond.withOpacity(0.8),
-                          //AppColor.SecondMainColor.withOpacity(0.7),
-                          Colors.white.withOpacity(0.5),
-                          Colors.white.withOpacity(0.8),
-
-                        ],
-                      ),
+                      color: AppColor.WelcomeBackground,
+                      
                       borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(100),
-                        topLeft: Radius.circular(100),
+                        topRight: Radius.circular(60),
+                        topLeft: Radius.circular(60),
                       ),
                     ),
                   ),
@@ -144,8 +95,19 @@ class _PostPageState extends State<PostPage> {
 
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Post Page', style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w600),),
+                          Container(
+                            width: 240,
+                            height: 25,
+                            decoration:  BoxDecoration(
+                              color: Colors.white,
+
+                              borderRadius:  BorderRadius.circular(50),
+                            ),
+                            child: Center(
+                              child: Text('Post Page', style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w600),),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -158,14 +120,7 @@ class _PostPageState extends State<PostPage> {
                             margin: const EdgeInsets.only(top: 40,),
                             height: 250,
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  AppColor.SecondMainColor.withOpacity(0.5),
-
-                                  AppColor.gradientSecond.withOpacity(0.8)
-                                  // Colors.white.withOpacity(0.7),
-                                ],
-                              ),
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(40),
                             ),
 
@@ -182,17 +137,10 @@ class _PostPageState extends State<PostPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Container(
-                        margin: const EdgeInsets.only(top: 50,),
+                        margin: const EdgeInsets.only(top: 40,),
                         height: 250,
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              AppColor.SecondMainColor.withOpacity(0.5),
-
-                              AppColor.gradientSecond.withOpacity(0.8)
-                              //Colors.white.withOpacity(0.7),
-                            ],
-                          ),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         child: const Padding(
