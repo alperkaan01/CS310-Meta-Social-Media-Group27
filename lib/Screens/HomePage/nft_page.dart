@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proj_v2/colors.dart';
+import 'package:proj_v2/login.dart';
 
 
 class NftPage extends StatefulWidget {
@@ -20,6 +21,19 @@ class _NftPageState extends State<NftPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Row(
+
+              children: [
+                FloatingActionButton(onPressed: (){
+                  Navigator.pop(context, MaterialPageRoute(builder: (context){
+                    return Login();
+                  }));
+                },
+                  backgroundColor: AppColor.SecondMainColor,
+                  child: const Icon(Icons.logout,color: Colors.black,),)
+              ],
+              
+            ),
             Stack(
               children: [
                 Positioned(child: Row(
@@ -28,11 +42,12 @@ class _NftPageState extends State<NftPage> {
                     Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.only(top: 60,),
+
                           child: CircleAvatar(
+                            backgroundColor: AppColor.SecondMainColor,
                             child: ClipOval(
                               child: Image.network(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBCrOuR4hN2mppQ8YPawUUNfFyjsj5Frqs5Q&usqp=CAU',
+                                'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -40,7 +55,7 @@ class _NftPageState extends State<NftPage> {
                           ),
                         ),
                         const SizedBox(height: 20,),
-                        Container(child: Center(child: const Text("@Username",
+                        Container(child: const Center(child: Text("@Username",
                           style: TextStyle(fontSize: 20),)),
 
                             width: 150,
@@ -95,7 +110,7 @@ class _NftPageState extends State<NftPage> {
 
                               borderRadius:  BorderRadius.circular(50),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text('NFT Page', style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.w600),),
                             ),
@@ -103,45 +118,91 @@ class _NftPageState extends State<NftPage> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Column(
-                        children: [
+                    Column(
+                      children: [
 
-                          Container(
-                            margin: const EdgeInsets.only(top: 40,),
-                            height: 250,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(40),
-                            ),
+                        Container(
 
-                            child: const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                child: Image(width: 500,
-                                    image: NetworkImage(
-                                        "https://d1lss44hh2trtw.cloudfront.net/assets/article/2022/01/26/bayc-racism_feature.jpg"))
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 40,),
-                        height: 250,
-                        decoration: BoxDecoration(
+                          margin: const EdgeInsets.only(top: 40,),
+                          height: 270,
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(40),
+                          width: size.width,
+
+
+                          child:  Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: CircleAvatar(
+                                      backgroundColor: AppColor.SecondMainColor,
+                                      child: ClipOval(
+                                        child: Image.network(
+                                          'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      radius: 15,
+                                    ),
+                                  ),
+                                  Text("User62",style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),
+                                ],
+                              ),
+
+                              const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Image(width: 450,
+                                      image: NetworkImage(
+                                          "https://d1lss44hh2trtw.cloudfront.net/assets/article/2022/01/26/bayc-racism_feature.jpg"))
+                              ),
+                            ],
+                          ),
                         ),
-                        child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Image(width: 500,
-                                image: NetworkImage(
-                                    "https://www.webtekno.com/images/editor/default/0003/38/a8c6c85578b025e1bc1c2bee7a3eaea678b90d0b.jpeg"))
+                      ],
+                    ),
+                    Column(
+                      children: [
+
+                        Container(
+
+                          margin: const EdgeInsets.only(top: 40,),
+                          height: 270,
+                          color: Colors.white,
+                          width: size.width,
+
+
+                          child:  Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: CircleAvatar(
+                                      backgroundColor: AppColor.SecondMainColor,
+                                      child: ClipOval(
+                                        child: Image.network(
+                                          'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      radius: 15,
+                                    ),
+                                  ),
+                                  const Text("User17",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),
+                                ],
+                              ),
+
+                              const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Image(width: 450,
+                                      image: NetworkImage(
+                                          "https://www.webtekno.com/images/editor/default/0003/38/a8c6c85578b025e1bc1c2bee7a3eaea678b90d0b.jpeg"))
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
 
                   ],
