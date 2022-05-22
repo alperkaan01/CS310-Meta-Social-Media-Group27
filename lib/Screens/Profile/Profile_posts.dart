@@ -67,6 +67,13 @@ class _Profile_postsState extends State<Profile_posts> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
+                            Text(
+                              "@username",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
                             SizedBox(height: 20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
