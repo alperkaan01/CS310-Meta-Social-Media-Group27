@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proj_v2/Discover.dart';
+import 'package:proj_v2/Profile.dart';
 import 'package:proj_v2/nft_page.dart';
 import 'package:proj_v2/post_page.dart';
 import 'package:proj_v2/colors.dart';
@@ -22,7 +24,11 @@ class _HomePageState extends State<HomePage> {
   final screens = [
     PostPage(),
     NftPage(),
-    MyHomePage(title: 'Flutter Demo'),
+    Discover_page(),
+    ProfilePost(title: 'Flutter Demo'),
+
+
+
 
   ];
 
@@ -36,6 +42,12 @@ class _HomePageState extends State<HomePage> {
 
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 25,
+        fixedColor: Colors.black,
+        showSelectedLabels: true,
+
+        unselectedItemColor: Colors.black,
+
+
 
 
         currentIndex: currentIndex,
@@ -50,7 +62,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.photo,color: AppColor.gradientSecond,),
             label: 'Posts Page',
-            backgroundColor: Colors.blue,
+
 
 
 
@@ -61,14 +73,21 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.diamond,color: AppColor.gradientSecond,
             ),
             label: 'NFT Page',
-            backgroundColor: Colors.blue,
+
+
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search,color: AppColor.gradientSecond,
+            ),
+            label: 'Discover',
+
 
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.person,color: AppColor.gradientSecond,),
             label: 'Profile',
-            backgroundColor: Colors.blue,
+
 
           ),
 
