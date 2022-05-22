@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   final screens = [
     PostPage(),
     NftPage(),
-    Center(child:Text("Profile")),
+    MyHomePage(title: 'Flutter Demo'),
 
   ];
 
