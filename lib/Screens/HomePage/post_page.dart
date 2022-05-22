@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proj_v2/colors.dart';
+import 'package:proj_v2/login.dart';
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
 
@@ -9,12 +10,7 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    bool ? isPost = true;
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +21,23 @@ class _PostPageState extends State<PostPage> {
 
       backgroundColor: Colors.white,
 
+
       body: SingleChildScrollView(
         child: Column(
           children: [
+        Row(
+
+        children: [
+        FloatingActionButton(onPressed: (){
+          Navigator.pop(context, MaterialPageRoute(builder: (context){
+            return const Login();
+          }));
+        },
+          backgroundColor: AppColor.WelcomeBackground,
+          child: const Icon(Icons.logout,color: Colors.black,)
+          ,)
+        ],
+        ),
             Stack(
               children: [
                 Positioned(child: Row(
@@ -36,11 +46,12 @@ class _PostPageState extends State<PostPage> {
                     Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.only(top: 60,),
+
                           child: CircleAvatar(
+                            backgroundColor: AppColor.WelcomeBackground,
                             child: ClipOval(
                               child: Image.network(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBCrOuR4hN2mppQ8YPawUUNfFyjsj5Frqs5Q&usqp=CAU',
+                                'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -48,7 +59,7 @@ class _PostPageState extends State<PostPage> {
                           ),
                         ),
                         const SizedBox(height: 20,),
-                        Container(child: Center(child: const Text("@Username",
+                        Container(child: const Center(child: Text("@Username",
                           style: TextStyle(fontSize: 20),)),
 
                           width: 150,
@@ -103,7 +114,7 @@ class _PostPageState extends State<PostPage> {
 
                               borderRadius:  BorderRadius.circular(50),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text('Post Page', style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.w600),),
                             ),
@@ -111,45 +122,91 @@ class _PostPageState extends State<PostPage> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Column(
-                        children: [
+                    Column(
+                      children: [
 
-                          Container(
-                            margin: const EdgeInsets.only(top: 40,),
-                            height: 250,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(40),
-                            ),
+                        Container(
 
-                            child: const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                child: Image(width: 500,
-                                    image: NetworkImage(
-                                        "https://www.oggusto.com/uploads/images/custom/15814-kategori.jpg"))
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 40,),
-                        height: 250,
-                        decoration: BoxDecoration(
+                          margin: const EdgeInsets.only(top: 40,),
+                          height: 300,
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(40),
+                          width: size.width,
+
+
+                          child:  Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: CircleAvatar(
+                                      backgroundColor: AppColor.SecondMainColor,
+                                      child: ClipOval(
+                                        child: Image.network(
+                                          'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      radius: 15,
+                                    ),
+                                  ),
+                                  const Text("User17",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),
+                                ],
+                              ),
+
+                              const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Image(width: 450,
+                                      image: NetworkImage(
+                                          "https://www.oggusto.com/uploads/images/custom/15814-kategori.jpg"))
+                              ),
+                            ],
+                          ),
                         ),
-                        child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Image(width: 500,
-                                image: NetworkImage(
-                                    "https://www.yabanihayvanlar.com/wp-content/uploads/2021/04/fil.jpg"))
+                      ],
+                    ),
+                    Column(
+                      children: [
+
+                        Container(
+
+                          margin: const EdgeInsets.only(top: 40,),
+                          height: 320,
+                          color: Colors.white,
+                          width: size.width,
+
+
+                          child:  Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: CircleAvatar(
+                                      backgroundColor: AppColor.SecondMainColor,
+                                      child: ClipOval(
+                                        child: Image.network(
+                                          'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      radius: 15,
+                                    ),
+                                  ),
+                                  Text("User62",style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),
+                                ],
+                              ),
+
+                              const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Image(width: 450,
+                                      image: NetworkImage(
+                                          "https://www.yabanihayvanlar.com/wp-content/uploads/2021/04/fil.jpg"))
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
 
                   ],
