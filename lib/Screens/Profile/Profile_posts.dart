@@ -43,6 +43,14 @@ class _Profile_postsState extends State<Profile_posts> {
                             ),
                           )
                       ),
+                      Positioned(
+                        child:Container(
+                          padding: EdgeInsets.only(top: 13.0, left: 325.0),
+                          child: IconButton(
+                              onPressed:() {},
+                              icon: Icon(
+                                Icons.edit, color: Colors.black,)),
+                        ),),
                       Positioned(child: Center(
                         child: Column(
                           children: [
