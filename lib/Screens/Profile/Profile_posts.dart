@@ -169,7 +169,7 @@ class _Profile_postsState extends State<Profile_posts> {
                         width: 70,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: color.AppColor.SecondMainColor,
+                          color: color.AppColor.SecondMainColorOpaque,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         child: FlatButton(
@@ -177,7 +177,7 @@ class _Profile_postsState extends State<Profile_posts> {
                             //Navigator push homepage
                           },
                           child: Text("NFT", style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                           ),),
                         ),
                       ),
