@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proj_v2/colors.dart';
+import '../../Object Classes/colors.dart';
 
 class Discover_page extends StatefulWidget {
   const Discover_page({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _Discover_pageState extends State<Discover_page> {
 
               decoration: BoxDecoration(
                   color: AppColor.WelcomeBackground,
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50),bottomRight:  Radius.circular(50))
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50),bottomRight:  Radius.circular(50))
               ),
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
@@ -54,7 +54,7 @@ class _Discover_pageState extends State<Discover_page> {
                         ),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(16),
-                          child: Image(width: 150,
+                          child: const Image(width: 150,
                               image: NetworkImage(
                                   "https://pbs.twimg.com/profile_images/1310512844954370048/W5NEr-3W_400x400.jpg")),
                         )
@@ -88,7 +88,7 @@ class _Discover_pageState extends State<Discover_page> {
 
 
             ),
-            SizedBox(height: 80,),
+            const SizedBox(height: 80,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -100,9 +100,9 @@ class _Discover_pageState extends State<Discover_page> {
 
                   ),
 
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: const TextField(
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: TextField(
                       decoration: InputDecoration(
                         focusColor: Colors.white,
                         hoverColor: Colors.white,
