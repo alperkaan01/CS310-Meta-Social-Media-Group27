@@ -1,6 +1,10 @@
+import 'package:cs310_mainproject/Object%20Classes/colors.dart' as color;
+import 'package:cs310_mainproject/Object%20Classes/post.dart';
+import 'package:cs310_mainproject/Screens/ProfileEdit/profileEdit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/styles/colors.dart' as color;
+
+import '../../UI/postcard.dart';
 
 class Profile_posts extends StatefulWidget {
   const Profile_posts({Key? key}) : super(key: key);
@@ -10,6 +14,25 @@ class Profile_posts extends StatefulWidget {
 }
 
 class _Profile_postsState extends State<Profile_posts> {
+
+  List<Post> posts = [
+    Post( URL: "https://jingculturecommerce.com/wp-content/uploads/2021/11/rtfkt-murakami-clone-x-2-1240x826.jpg",text: 'Hello MetaWorld 1', date: 'March 31', likes: 10, comments: 0),
+    Post( URL: "https://www.presse-citron.net/app/uploads/2022/03/bored-ape-metavers-yuga-labs.jpg",text: 'Hello MetaWorld 2', date: 'March 30', likes: 0, comments: 5),
+    Post( URL: "https://cryptopotato.com/wp-content/uploads/2022/01/img3_cryptopunks.jpg", text: 'Hello MetaWorld 3', date: 'March 29', likes: 20, comments: 10),
+  ];
+
+  void deletePost(Post post) {
+    setState(() {
+      posts.remove(post);
+    });
+  }
+
+  void LikeIncrement(Post post) {
+    setState(() {
+      post.likes++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +70,12 @@ class _Profile_postsState extends State<Profile_posts> {
                         child:Container(
                           padding: EdgeInsets.only(top: 13.0, left: 325.0),
                           child: IconButton(
-                              onPressed:() {},
-                              icon: Icon(
+                              onPressed:() {
+                                Navigator.push(context, MaterialPageRoute(builder: (context){
+                                  return ProfileEdit();
+                                }));
+                              },
+                              icon: const Icon(
                                 Icons.edit, color: Colors.black,)),
                         ),),
                       Positioned(child: Center(
@@ -56,18 +83,18 @@ class _Profile_postsState extends State<Profile_posts> {
                           children: [
                             Container(
                               padding: const EdgeInsets.only(top: 20),
-                              child: Image.asset('lib/assets/images/avatar.png'),
+                              child: Image.asset('assets/images/avatar.png'),
                               height: 190,
                               width: 200,
                             ),
-                            Text(
+                            const Text(
                               "Name Surname",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "@username",
                               style: TextStyle(
                                 fontSize: 20,
@@ -79,7 +106,7 @@ class _Profile_postsState extends State<Profile_posts> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Column(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Posts",
                                       style: TextStyle(
@@ -100,7 +127,7 @@ class _Profile_postsState extends State<Profile_posts> {
                                 ),
                                 SizedBox(width: 25),
                                 Column(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Followers",
                                       style: TextStyle(
@@ -119,7 +146,7 @@ class _Profile_postsState extends State<Profile_posts> {
                                 ),
                                 SizedBox(width: 25,),
                                 Column(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Following",
                                       style: TextStyle(
@@ -157,7 +184,6 @@ class _Profile_postsState extends State<Profile_posts> {
                         ),
                         child: FlatButton(
                           onPressed: (){
-                            //Navigator push homepage
                           },
                           child: Text("Posts", style: TextStyle(
                             color: Colors.black,
@@ -186,15 +212,23 @@ class _Profile_postsState extends State<Profile_posts> {
                   Divider(
                     color: color.AppColor.gradientSecond,
                     thickness: 1.2,
-
                   ),
-                  SizedBox(height: 216),
+                  Column(
+                    children: posts.map((post) => PostCard(
+                      post: post,
+                      delete: (){
+                        deletePost(post);
+                      },
+                      likeIncrement: (){
+                        LikeIncrement(post);
+                      },
+                    )).toList(),
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         )
     );
   }
 }
-
