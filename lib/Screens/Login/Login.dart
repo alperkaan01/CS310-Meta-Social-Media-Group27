@@ -1,6 +1,7 @@
 import 'package:cs310_mainproject/Screens/HomePage/Homepage.dart';
 import 'package:cs310_mainproject/Screens/SignUp/Signup.dart';
-import 'package:cs310_mainproject/colors.dart' as color;
+import 'package:cs310_mainproject/Object%20Classes/colors.dart' as color;
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
