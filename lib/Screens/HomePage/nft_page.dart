@@ -1,6 +1,6 @@
+import 'package:cs310_mainproject/Object%20Classes/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:proj_v2/colors.dart';
-import 'package:proj_v2/login.dart';
+import '../Login/Login.dart';
 
 
 class NftPage extends StatefulWidget {
@@ -22,17 +22,18 @@ class _NftPageState extends State<NftPage> {
         child: Column(
           children: [
             Row(
-
               children: [
-                FloatingActionButton(onPressed: (){
-                  Navigator.pop(context, MaterialPageRoute(builder: (context){
-                    return Login();
-                  }));
-                },
-                  backgroundColor: AppColor.SecondMainColor,
-                  child: const Icon(Icons.logout,color: Colors.black,),)
+                Container(
+                  padding: const EdgeInsets.only(top: 25, left: 10,),
+                  child: FloatingActionButton(onPressed: (){
+                    Navigator.pop(context, MaterialPageRoute(builder: (context){
+                      return Login();
+                    }));
+                  },
+                    backgroundColor: AppColor.SecondMainColor,
+                    child: const Icon(Icons.logout,color: Colors.black,),),
+                )
               ],
-              
             ),
             Stack(
               children: [
