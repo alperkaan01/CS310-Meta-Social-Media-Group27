@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proj_v2/colors.dart';
-import 'package:proj_v2/login.dart';
+import '../../Object Classes/colors.dart';
+import '../Login/Login.dart';
+
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
 
@@ -25,19 +26,22 @@ class _PostPageState extends State<PostPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-        Row(
+            Row(
 
-        children: [
-        FloatingActionButton(onPressed: (){
-          Navigator.pop(context, MaterialPageRoute(builder: (context){
-            return const Login();
-          }));
-        },
-          backgroundColor: AppColor.WelcomeBackground,
-          child: const Icon(Icons.logout,color: Colors.black,)
-          ,)
-        ],
-        ),
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 25, left: 10,),
+                  child: FloatingActionButton(onPressed: (){
+                    Navigator.pop(context, MaterialPageRoute(builder: (context){
+                      return const Login();
+                    }));
+                  },
+                    backgroundColor: AppColor.WelcomeBackground,
+                    child: const Icon(Icons.logout,color: Colors.black,)
+                    ,),
+                )
+              ],
+            ),
             Stack(
               children: [
                 Positioned(child: Row(
@@ -62,13 +66,13 @@ class _PostPageState extends State<PostPage> {
                         Container(child: const Center(child: Text("@Username",
                           style: TextStyle(fontSize: 20),)),
 
-                          width: 150,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: AppColor.WelcomeBackground,
+                            width: 150,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: AppColor.WelcomeBackground,
 
-                            borderRadius:  BorderRadius.circular(50),
-                          )
+                              borderRadius:  BorderRadius.circular(50),
+                            )
                         ),
                         const SizedBox(height: 40,),
 
@@ -90,7 +94,7 @@ class _PostPageState extends State<PostPage> {
                     height: 800,
                     decoration: BoxDecoration(
                       color: AppColor.WelcomeBackground,
-                      
+
                       borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(60),
                         topLeft: Radius.circular(60),
