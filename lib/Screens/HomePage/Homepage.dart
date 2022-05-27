@@ -1,9 +1,10 @@
+import 'package:cs310_mainproject/Screens/HomePage/post_page.dart';
+import 'package:cs310_mainproject/Screens/Profile/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:proj_v2/Discover.dart';
-import 'package:proj_v2/Profile.dart';
-import 'package:proj_v2/nft_page.dart';
-import 'package:proj_v2/post_page.dart';
-import 'package:proj_v2/colors.dart';
+
+import '../../Object Classes/colors.dart';
+import 'discover.dart';
+import 'nft_page.dart';
 
 
 
@@ -25,10 +26,7 @@ class _HomePageState extends State<HomePage> {
     PostPage(),
     NftPage(),
     Discover_page(),
-    ProfilePost(title: 'Flutter Demo'),
-
-
-
+    Profile_posts(),
 
   ];
 
