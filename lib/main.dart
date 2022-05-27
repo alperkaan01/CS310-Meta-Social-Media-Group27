@@ -1,8 +1,9 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:cs310_mainproject/Screens/ProfileEdit/profileEdit.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:proj_v2/colors.dart';
-import 'package:proj_v2/welcome.dart';
+import 'Object Classes/colors.dart' as color;
+import 'package:cs310_mainproject/Screens/Welcome/welcome_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 void main(){
@@ -21,8 +22,9 @@ class SplashScreen extends StatelessWidget {
       splashIconSize: 2000,
       //backgroundColor: Colors.deepPurpleAccent,
       nextScreen: const WelcomeScreen(),
+      //nextScreen: const ProfileEdit(),
       animationDuration: const Duration(seconds: 3,),
-      backgroundColor: AppColor.WelcomeBackground,
+      backgroundColor: color.AppColor.WelcomeBackground,
     );
   }
 }
@@ -63,14 +65,18 @@ class _MyAppState extends State<MyApp> {
       firstLoad = 1;
       prefs!.setInt('appInitialLoad', firstLoad!);
       return MaterialApp(
+        theme: ThemeData(
+          primaryColor: color.AppColor.secondPageTopIconColor,
+          scaffoldBackgroundColor: color.AppColor.WelcomeBackground,
+        ),
         home: Walkthrough(),
       );
     } else {
       return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: AppColor.secondPageTopIconColor,
-          scaffoldBackgroundColor: AppColor.WelcomeBackground,
+          primaryColor: color.AppColor.secondPageTopIconColor,
+          scaffoldBackgroundColor: color.AppColor.WelcomeBackground,
         ),
         home: SplashScreen(),
       );
@@ -95,7 +101,7 @@ class _WalkthroughState extends State<Walkthrough> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       title: Text('Walkthrough'),
-      backgroundColor: AppColor.WelcomeBackground,
+      backgroundColor: color.AppColor.WelcomeBackground,
 
     ),
     body: Container(
@@ -107,16 +113,22 @@ class _WalkthroughState extends State<Walkthrough> {
         },
         children: [
           Container(
-            color: AppColor.SecondMainColor,
-            child: const Center(child: Text('Page1')),
+            color: color.AppColor.SecondMainColor,
+            child: Center(child: Image.asset(
+              'assets/images/Walkthrough1.png',
+            )),
           ),
           Container(
-            color: AppColor.SecondMainColor,
-            child: const Center(child: Text('Page2')),
+            color: color.AppColor.SecondMainColor,
+            child: Center(child: Image.asset(
+              'assets/images/Walkthrough2.png',
+            )),
           ),
           Container(
-            color: AppColor.SecondMainColor,
-            child: const Center(child: Text('Page3')),
+            color: color.AppColor.SecondMainColor,
+            child: Center(child: Image.asset(
+              'assets/images/Walkthrough3.png',
+            )),
           ),
         ],
 
@@ -126,10 +138,10 @@ class _WalkthroughState extends State<Walkthrough> {
     TextButton(
       style: TextButton.styleFrom(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(90)
+            //borderRadius: BorderRadius.circular(90)
         ),
-        primary: AppColor.homePageBackground,
-        backgroundColor: AppColor.SecondMainColor,
+        primary: color.AppColor.homePageBackground,
+        backgroundColor: color.AppColor.SecondMainColor,
         minimumSize: const Size.fromHeight(80),
       ),
       onPressed: () async {
@@ -154,8 +166,8 @@ class _WalkthroughState extends State<Walkthrough> {
                 count: 3,
                 effect: WormEffect(
                   spacing: 16,
-                  dotColor: AppColor.homePageSubtitle,
-                  activeDotColor: AppColor.homePageTitle,
+                  dotColor: color.AppColor.homePageSubtitle,
+                  activeDotColor: color.AppColor.homePageTitle,
 
                 ),
                 onDotClicked: (index) => controller.animateToPage(index,
