@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:proj_v2/Homepage.dart';
-import 'package:proj_v2/colors.dart' as color;
+import 'package:cs310_mainproject/Object%20Classes/colors.dart' as color;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:proj_v2/login.dart';
+
+import '../Login/Login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -85,7 +85,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-     backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: Center(
@@ -103,13 +103,13 @@ class _SignUpState extends State<SignUp> {
                             height: 100,
                             decoration: const BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [
-                                  Colors.white,
-                                  Colors.white,
-                                ]
+                                  colors: [
+                                    Colors.white,
+                                    Colors.white,
+                                  ]
 
-                                  //color.AppColor.gradientSecond.withOpacity(0.8),
-                                  //color.AppColor.SecondMainColor.withOpacity(0.7),
+                                //color.AppColor.gradientSecond.withOpacity(0.8),
+                                //color.AppColor.SecondMainColor.withOpacity(0.7),
 
                               ),
                               borderRadius: BorderRadius.only(
@@ -385,20 +385,20 @@ class _SignUpState extends State<SignUp> {
                               child: FlatButton(
                                 onPressed:  () async {
 
-                                    if(_formKey.currentState!.validate()){
+                                  if(_formKey.currentState!.validate()){
 
-                                      _formKey.currentState!.save();
-                                      //Navigator push login
-                                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                                        return Login();
-                                      }));
-
-
+                                    _formKey.currentState!.save();
+                                    //Navigator push login
+                                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                                      return Login();
+                                    }));
 
 
-                                    }
-                                    else{
-                                      _showDialog('Form Error', 'Your form is invalid');
+
+
+                                  }
+                                  else{
+                                    _showDialog('Form Error', 'Your form is invalid');
 
 
                                   }
@@ -428,7 +428,9 @@ class _SignUpState extends State<SignUp> {
 
                                       TextButton(
                                           onPressed: (){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context){ return Login(); } ));
+                                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                                              return Login();
+                                            }));
                                           },
                                           child: const Text("Sign in",style:
                                           TextStyle(
@@ -478,3 +480,4 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
+
