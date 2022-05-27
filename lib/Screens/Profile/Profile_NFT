@@ -1,6 +1,7 @@
+import 'package:cs310_mainproject/Object%20Classes/colors.dart' as color;
+import 'package:cs310_mainproject/Screens/HomePage/nft_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/styles/colors.dart' as color;
 
 class Profile_posts extends StatefulWidget {
   const Profile_posts({Key? key}) : super(key: key);
@@ -56,18 +57,18 @@ class _Profile_postsState extends State<Profile_posts> {
                           children: [
                             Container(
                               padding: const EdgeInsets.only(top: 20),
-                              child: Image.asset('lib/assets/images/avatar.png'),
+                              child: Image.asset('assets/images/avatar.png'),
                               height: 190,
                               width: 200,
                             ),
-                            Text(
+                            const Text(
                               "Name Surname",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "@username",
                               style: TextStyle(
                                 fontSize: 20,
@@ -79,7 +80,7 @@ class _Profile_postsState extends State<Profile_posts> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Column(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Posts",
                                       style: TextStyle(
@@ -100,7 +101,7 @@ class _Profile_postsState extends State<Profile_posts> {
                                 ),
                                 SizedBox(width: 25),
                                 Column(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Followers",
                                       style: TextStyle(
@@ -119,7 +120,7 @@ class _Profile_postsState extends State<Profile_posts> {
                                 ),
                                 SizedBox(width: 25,),
                                 Column(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Following",
                                       style: TextStyle(
@@ -144,7 +145,7 @@ class _Profile_postsState extends State<Profile_posts> {
                       )),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -164,7 +165,7 @@ class _Profile_postsState extends State<Profile_posts> {
                           ),),
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Container(
                         width: 70,
                         height: 40,
@@ -175,8 +176,9 @@ class _Profile_postsState extends State<Profile_posts> {
                         child: FlatButton(
                           onPressed: (){
                             //Navigator push homepage
+
                           },
-                          child: Text("NFT", style: TextStyle(
+                          child: const Text("NFT", style: TextStyle(
                             color: Colors.black,
                           ),),
                         ),
@@ -197,4 +199,3 @@ class _Profile_postsState extends State<Profile_posts> {
     );
   }
 }
-
