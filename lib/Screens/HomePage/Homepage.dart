@@ -1,8 +1,8 @@
-import 'package:cs310_mainproject/Screens/HomePage/DiscoverV2.dart';
-import 'package:cs310_mainproject/Screens/HomePage/nftV2.dart';
-import 'package:cs310_mainproject/Screens/HomePage/postV2.dart';
+import 'package:cs310_mainproject/Screens/HomePage/Discover.dart';
+import 'package:cs310_mainproject/Screens/HomePage/nft.dart';
+import 'package:cs310_mainproject/Screens/HomePage/post.dart';
 import 'package:cs310_mainproject/Screens/HomePage/post_page.dart';
-import 'package:cs310_mainproject/Screens/Profile/ProfileV2.dart';
+import 'package:cs310_mainproject/Screens/Profile/Profile.dart';
 import 'package:cs310_mainproject/Screens/Profile/Profile_posts.dart';
 
 import 'package:flutter/material.dart';
@@ -32,10 +32,10 @@ class _HomePageState extends State<HomePage> {
 
   int currentIndex = 0;
   final screens = const [
-    PostPageV2(),
-    NFTPageV2(),
-    DiscoverV2(),
-    ProfileV2(),
+    PostPage(),
+    NFTPage(),
+    Discover(),
+    Profile(),
 
   ];
 
