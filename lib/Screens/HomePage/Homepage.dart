@@ -1,8 +1,6 @@
 import 'package:cs310_mainproject/Screens/HomePage/Discover.dart';
 import 'package:cs310_mainproject/Screens/HomePage/nft_page.dart';
-import 'package:cs310_mainproject/Screens/HomePage/post.dart';
 import 'package:cs310_mainproject/Screens/HomePage/post_page.dart';
-import 'package:cs310_mainproject/Screens/Profile/Profile.dart';
 import 'package:cs310_mainproject/Screens/Profile/Profile_posts.dart';
 
 import 'package:flutter/material.dart';
