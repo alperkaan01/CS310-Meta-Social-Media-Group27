@@ -33,18 +33,27 @@ class _SignUpState extends State<SignUp> {
         builder: (BuildContext context){
           if(isAndroid){
             return AlertDialog(
-              title: Text(title),
+              title: Text(title,style: GoogleFonts.bebasNeue(
+                  fontSize: 25,color: Colors.blue
+
+              ),),
               content: SingleChildScrollView(
                 child: ListBody(
                   children: [
-                    Text(message),
+                    Text(message,style: GoogleFonts.montserrat(
+                      fontSize: 16,
+
+                    )),
                   ],
                 ),
 
               ),
               actions: [
                 TextButton(
-                  child: const Text('OK'),
+                  child:  Text('OK',style: GoogleFonts.bebasNeue(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  )),
                   onPressed: (){
                     Navigator.of(context).pop();
                   },
@@ -55,18 +64,27 @@ class _SignUpState extends State<SignUp> {
           }
           else{
             return CupertinoAlertDialog(
-              title: Text(title),
+              title: Text(title,style: GoogleFonts.bebasNeue(
+                  fontSize: 25,color: Colors.blue
+
+              ),),
               content:SingleChildScrollView(
                 child: ListBody(
                   children: [
-                    Text(message),
+                    Text(message,style: GoogleFonts.montserrat(
+                      fontSize: 16,
+
+                    )),
                   ],
                 ),
 
               ),
               actions: [
                 TextButton(
-                  child: const Text('OK'),
+                  child:  Text('OK',style: GoogleFonts.bebasNeue(
+             fontSize: 20,
+              fontWeight: FontWeight.w500,
+            )),
                   onPressed: (){
                     Navigator.of(context).pop();
                   },
