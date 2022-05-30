@@ -1,29 +1,40 @@
-import 'package:cs310_mainproject/Object%20Classes/colors.dart' as color;
-import 'package:cs310_mainproject/Object%20Classes/post.dart';
 import 'package:cs310_mainproject/Screens/ProfileEdit/profileEdit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import '../../Object Classes/colors.dart' as color;
+import '../../Object Classes/nft.dart';
+import '../../Object Classes/post.dart';
+import '../../UI/nftcard.dart';
 import '../../UI/postcard.dart';
 
-class Profile_posts extends StatefulWidget {
-  const Profile_posts({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
-  State<Profile_posts> createState() => _Profile_postsState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _Profile_postsState extends State<Profile_posts> {
-
+class _ProfileState extends State<Profile> {
   List<Post> posts = [
-    Post( URL: "https://jingculturecommerce.com/wp-content/uploads/2021/11/rtfkt-murakami-clone-x-2-1240x826.jpg",text: 'Hello MetaWorld 1', date: 'March 31', likes: 10, comments: 0),
-    Post( URL: "https://www.presse-citron.net/app/uploads/2022/03/bored-ape-metavers-yuga-labs.jpg",text: 'Hello MetaWorld 2', date: 'March 30', likes: 0, comments: 5),
-    Post( URL: "https://cryptopotato.com/wp-content/uploads/2022/01/img3_cryptopunks.jpg", text: 'Hello MetaWorld 3', date: 'March 29', likes: 20, comments: 10),
+    Post( URL: "https://www.animalfriends.co.uk/siteassets/media/images/article-images/cat-articles/38_afi_article1_caring-for-a-kitten-tips-for-the-first-month.png",text: 'Hello MetaWorld 1', date: 'March 31', likes: 10, comments: 0),
+    Post( URL: "https://kitcheninred.com/wp-content/uploads/2020/06/%C3%A7ikolatal%C4%B1-pasta-1-scaled.jpg",text: 'Hello MetaWorld 2', date: 'March 30', likes: 0, comments: 5),
+    Post( URL: "https://i.pinimg.com/originals/62/f1/65/62f165cebd814ec81f1e5a324eecbdd1.jpg", text: 'Hello MetaWorld 3', date: 'March 29', likes: 20, comments: 10),
   ];
+  List<NFT> nfts = [
+    NFT( URL: "https://jingculturecommerce.com/wp-content/uploads/2021/11/rtfkt-murakami-clone-x-2-1240x826.jpg",text: 'Hello MetaWorld 1', date: 'March 31', likes: 10, money: 1000),
+    NFT( URL: "https://www.presse-citron.net/app/uploads/2022/03/bored-ape-metavers-yuga-labs.jpg",text: 'Hello MetaWorld 2', date: 'March 30', likes: 0, money: 750),
+    NFT( URL: "https://cryptopotato.com/wp-content/uploads/2022/01/img3_cryptopunks.jpg", text: 'Hello MetaWorld 3', date: 'March 29', likes: 20, money: 600),
+  ];
+  int currentIndex = 0;
+
 
   void deletePost(Post post) {
     setState(() {
       posts.remove(post);
+    });
+  }
+  void deleteNFT(NFT nft) {
+    setState(() {
+      nfts.remove(nft);
     });
   }
 
@@ -32,11 +43,43 @@ class _Profile_postsState extends State<Profile_posts> {
       post.likes++;
     });
   }
+  void LikeIncrementNFT(NFT nft) {
+    setState(() {
+      nft.likes++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
+    final screens = [
+      Column(
+        children: posts.map((post) =>
+            PostCard(
+              post: post,
+              delete: () {
+                deletePost(post);
+              },
+              likeIncrement: () {
+                LikeIncrement(post);
+              },
+            )).toList(),
+      ),
+      Column(
+        children: nfts.map((nft) => NFTCard(
+          nft: nft,
+          delete: (){
+            deleteNFT(nft);
+          },
+          likeIncrement: (){
+            LikeIncrementNFT(nft);
+          },
+        )).toList(),
+      ),
+
+
+
+    ];
+    return SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -53,8 +96,10 @@ class _Profile_postsState extends State<Profile_posts> {
                               gradient: LinearGradient(
                                 colors: [
                                   color.AppColor.gradientFirst.withOpacity(0.5),
-                                  color.AppColor.gradientSecond.withOpacity(0.8),
-                                  color.AppColor.SecondMainColor.withOpacity(0.7),
+                                  color.AppColor.gradientSecond.withOpacity(
+                                      0.8),
+                                  color.AppColor.SecondMainColor.withOpacity(
+                                      0.7),
                                 ],
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
@@ -67,13 +112,14 @@ class _Profile_postsState extends State<Profile_posts> {
                           )
                       ),
                       Positioned(
-                        child:Container(
+                        child: Container(
                           padding: EdgeInsets.only(top: 13.0, left: 325.0),
                           child: IconButton(
-                              onPressed:() {
-                                Navigator.push(context, MaterialPageRoute(builder: (context){
-                                  return ProfileEdit();
-                                }));
+                              onPressed: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return ProfileEdit();
+                                    }));
                               },
                               icon: const Icon(
                                 Icons.edit, color: Colors.black,)),
@@ -83,7 +129,7 @@ class _Profile_postsState extends State<Profile_posts> {
                           children: [
                             Container(
                               padding: const EdgeInsets.only(top: 20),
-                              child: Image.asset('assets/images/avatar.png'),
+                              child: Image.asset('assets/avatar.png'),
                               height: 190,
                               width: 200,
                             ),
@@ -183,7 +229,10 @@ class _Profile_postsState extends State<Profile_posts> {
                           borderRadius: BorderRadius.circular(40),
                         ),
                         child: FlatButton(
-                          onPressed: (){
+                          onPressed: () {
+                            setState(() {
+                              currentIndex = 0;
+                            });
                           },
                           child: Text("Posts", style: TextStyle(
                             color: Colors.black,
@@ -199,7 +248,10 @@ class _Profile_postsState extends State<Profile_posts> {
                           borderRadius: BorderRadius.circular(40),
                         ),
                         child: FlatButton(
-                          onPressed: (){
+                          onPressed: () {
+                            setState(() {
+                              currentIndex = 1;
+                            });
                             //Navigator push homepage
                           },
                           child: Text("NFT", style: TextStyle(
@@ -213,22 +265,12 @@ class _Profile_postsState extends State<Profile_posts> {
                     color: color.AppColor.gradientSecond,
                     thickness: 1.2,
                   ),
-                  Column(
-                    children: posts.map((post) => PostCard(
-                      post: post,
-                      delete: (){
-                        deletePost(post);
-                      },
-                      likeIncrement: (){
-                        LikeIncrement(post);
-                      },
-                    )).toList(),
-                  ),
+                  screens[currentIndex],
                 ],
               ),
             ],
           ),
-        )
+
     );
   }
 }
