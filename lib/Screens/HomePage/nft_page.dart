@@ -1,24 +1,21 @@
-import 'package:cs310_mainproject/Object%20Classes/colors.dart';
+import 'package:cs310_mainproject/Screens/Login/Login.dart';
 import 'package:flutter/material.dart';
-import '../Login/Login.dart';
 
-
-class NftPage extends StatefulWidget {
-  const NftPage({Key? key}) : super(key: key);
+import '../../Object Classes/colors.dart';
+class NFTPage extends StatefulWidget {
+  const NFTPage({Key? key}) : super(key: key);
 
   @override
-  State<NftPage> createState() => _NftPageState();
+  State<NFTPage> createState() => _NFTPageState();
 }
 
-class _NftPageState extends State<NftPage> {
+class _NFTPageState extends State<NFTPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
 
-      backgroundColor: Colors.white,
 
-      body: SingleChildScrollView(
+      return SingleChildScrollView(
         child: Column(
           children: [
             Row(
@@ -84,7 +81,7 @@ class _NftPageState extends State<NftPage> {
                   child: Container(
                     padding: const EdgeInsets.only(top: 50,),
                     width: size.width,
-                    height: 800,
+                    height: size.height,
                     decoration: BoxDecoration(
                       color: AppColor.SecondMainColor,
 
@@ -213,7 +210,7 @@ class _NftPageState extends State<NftPage> {
             )
           ],
         ),
-      ),
-    );
+      );
+
   }
 }
