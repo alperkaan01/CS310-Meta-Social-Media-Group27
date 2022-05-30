@@ -1,6 +1,7 @@
+import 'package:cs310_mainproject/Screens/Login/Login.dart';
 import 'package:flutter/material.dart';
+
 import '../../Object Classes/colors.dart';
-import '../Login/Login.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
@@ -10,20 +11,11 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-
-
-
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
-    return Scaffold(
+    Size size = MediaQuery.of(context).size;
 
-      backgroundColor: Colors.white,
-
-
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Column(
           children: [
             Row(
@@ -91,7 +83,7 @@ class _PostPageState extends State<PostPage> {
                   child: Container(
                     padding: const EdgeInsets.only(top: 50,),
                     width: size.width,
-                    height: 800,
+                    height: size.height,
                     decoration: BoxDecoration(
                       color: AppColor.WelcomeBackground,
 
@@ -210,6 +202,7 @@ class _PostPageState extends State<PostPage> {
                             ],
                           ),
                         ),
+
                       ],
                     ),
 
@@ -220,7 +213,8 @@ class _PostPageState extends State<PostPage> {
             )
           ],
         ),
-      ),
-    );
+      );
+
   }
 }
+
