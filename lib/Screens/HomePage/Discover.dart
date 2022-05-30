@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../Object Classes/colors.dart';
 
-class Discover_page extends StatefulWidget {
-  const Discover_page({Key? key}) : super(key: key);
+import '../../Object Classes/colors.dart';
+class Discover extends StatefulWidget {
+  const Discover({Key? key}) : super(key: key);
 
   @override
-  State<Discover_page> createState() => _Discover_pageState();
+  State<Discover> createState() => _DiscoverState();
 }
 
-class _Discover_pageState extends State<Discover_page> {
+class _DiscoverState extends State<Discover> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+    return  SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -32,7 +30,7 @@ class _Discover_pageState extends State<Discover_page> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextButton(onPressed: (){}, child: Text("Discover NFT's", style: TextStyle(
+                        TextButton(onPressed: (){}, child: Text("Discover NFT's", style: const TextStyle(
                           fontSize: 20,color: Colors.black,
                         ))),
                         Padding(
@@ -123,7 +121,7 @@ class _Discover_pageState extends State<Discover_page> {
             ),
           ],
         ),
-      ),
-    );
+      );
+
   }
 }
