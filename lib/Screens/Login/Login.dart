@@ -4,6 +4,7 @@ import 'package:cs310_mainproject/Screens/HomePage/Homepage.dart';
 import 'package:cs310_mainproject/Screens/SignUp/Signup.dart';
 import 'package:cs310_mainproject/Object%20Classes/colors.dart' as color;
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -25,6 +26,49 @@ class _LoginState extends State<Login> {
   late String email;
   late String surname;
   final _formKey = GlobalKey<FormState>();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance; //For firebase authentication
+
+  Future RegisterUser() async {
+    try{
+      UserCredential uc = await _auth.createUserWithEmailAndPassword(email: email, password: password); //email and password authetication in firebase database
+    } on FirebaseAuthException catch(e){
+      print(e.toString());
+      if(e.code == 'email-already-in-use'){
+        _showDialog('Signup Error: ', e.message ?? 'Email already in use');
+      }else if(e.code == 'weak-password'){
+        _showDialog('Password Error: ', e.message ?? 'Your password is weak');
+      }
+    }catch(e){
+      _showDialog('General Error: ', e.toString());
+    }
+  } //try and catch blocks for register errors
+
+  Future LoginUser() async {
+
+    bool isPass = true;
+
+    try{
+      UserCredential uc = await _auth.signInWithEmailAndPassword(email: email, password: password); //email and password authetication in firebase database
+    } on FirebaseAuthException catch(e){
+      isPass = false;
+      print(e.toString());
+      if(e.code == 'user-not-found'){
+        _showDialog('Login Error: ', e.message ?? 'Email or password not found');
+      }else if(e.code == 'wrong-password'){
+        _showDialog('Password Error: ', e.message ?? 'Password is not found');
+      }
+    }catch(e){
+      isPass = false;
+      _showDialog('General Error: ', e.toString());
+    }
+    if(isPass){
+      Navigator.push(context, MaterialPageRoute(builder: (context){
+        return HomePage();
+      }));
+    }
+  } // Email or password try catch block for Login
+
 
   Future<void> _showDialog(String title, String message) async {
     bool isAndroid = Platform.isAndroid;
@@ -264,14 +308,12 @@ class _LoginState extends State<Login> {
                                   if(_formKey.currentState!.validate()){
 
                                     _formKey.currentState!.save();
+                                    await LoginUser();
                                     //Navigator push login
-                                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                                      return HomePage();
-                                    }));
 
-
-
-
+                                    //Navigator.push(context, MaterialPageRoute(builder: (context){
+                                      //return HomePage();
+                                    //}));
                                   }
                                   else{
                                     _showDialog('Form Error', '-Your form is invalid-');
