@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cs310_mainproject/Screens/ProfileEdit/profileEdit.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'Object Classes/colors.dart' as color;
@@ -7,13 +8,15 @@ import 'package:cs310_mainproject/Screens/Welcome/welcome_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 void main(){
+  WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const MyApp());
+  runApp( OurFireBaseApp());
 
 
 }
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +34,10 @@ class SplashScreen extends StatelessWidget {
 
 
 
+
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+   MyApp({Key? key}) : super(key: key);
+  final Future<FirebaseApp> _init = Firebase.initializeApp();
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -184,4 +189,59 @@ class _WalkthroughState extends State<Walkthrough> {
     ),
   );
 }
+class OurFireBaseApp extends StatelessWidget {
+
+  final Future<FirebaseApp> _init = Firebase.initializeApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: _init,
+        builder: (context, snapshot){
+          if(snapshot.hasError){
+            return ErrorScreen(message: snapshot.error.toString(),);
+
+          }
+          if(snapshot.connectionState == ConnectionState.done){
+            return MyApp();
+
+          }
+          return WaitingScreen();
+
+        });
+  }
+}
+class ErrorScreen extends StatelessWidget {
+  ErrorScreen({Key? key, required this.message}) : super(key: key);
+
+  String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('CS310'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Text(message),
+      ),
+    );
+  }
+}
+
+class WaitingScreen extends StatelessWidget {
+  const WaitingScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: Text('Connecting Aga'),
+    );
+  }
+}
+
+
+
 
