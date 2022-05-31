@@ -1,5 +1,4 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:cs310_mainproject/Screens/ProfileEdit/profileEdit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -7,10 +6,11 @@ import 'Object Classes/colors.dart' as color;
 import 'package:cs310_mainproject/Screens/Welcome/welcome_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp( OurFireBaseApp());
+  runApp(OurFireBaseApp());
 
 
 }
