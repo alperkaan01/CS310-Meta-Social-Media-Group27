@@ -21,6 +21,26 @@ class NFTCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white38,
+                    child: ClipOval(
+                      child: Image.network(
+                        nft.UserURL,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    radius: 15,
+                  ),
+                ),
+                Text(nft.username,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),
+              ],
+
+
+            ),
             Image.network(
                 nft.URL
             ),
