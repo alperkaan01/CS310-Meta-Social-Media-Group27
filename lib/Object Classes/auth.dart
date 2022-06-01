@@ -30,8 +30,31 @@ class AuthService {
       return  e.toString();
     }
     //if(isPass){
-      //Navigator.push(context, MaterialPageRoute(builder: (context){
-        //return HomePage();
-      //}));
+    //Navigator.push(context, MaterialPageRoute(builder: (context){
+    //return HomePage();
+    //}));
+  }
+
+  Future<dynamic> registerUserWithEmailPass(String email, String pass) async{
+    try{
+      UserCredential uc = await _auth.createUserWithEmailAndPassword(
+          email: email,
+          password: pass
+
+      );
+      return uc.user;
+      //email and password authetication in firebase database
+    } on FirebaseAuthException catch(e){
+
+      if(e.code == 'email-already-in-use'){
+        return e.message ?? 'Email already in use';
+      }else if(e.code == 'weak-password'){
+        return e.message ?? 'Your password is weak';
+      }
     }
   }
+  Future signOut() async{
+    _auth.signOut();
+
+  }
+}
