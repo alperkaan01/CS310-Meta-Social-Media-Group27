@@ -55,6 +55,7 @@ class _LoginState extends State<Login> {
       print(e.toString());
       if(e.code == 'user-not-found'){
         _showDialog('Login Error: ', e.message ?? 'Email or password not found');
+        //RegisterUser();
       }else if(e.code == 'wrong-password'){
         _showDialog('Password Error: ', e.message ?? 'Password is not found');
       }
@@ -68,6 +69,21 @@ class _LoginState extends State<Login> {
       }));
     }
   } // Email or password try catch block for Login
+
+  @override
+  void initState() {
+    super.initState();
+
+    _auth.authStateChanges().listen((user) {
+      if(user == null){
+
+      }else{
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return HomePage();
+        }));
+      }
+    });
+  }
 
 
   Future<void> _showDialog(String title, String message) async {
