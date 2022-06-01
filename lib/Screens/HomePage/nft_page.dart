@@ -1,4 +1,6 @@
 import 'package:cs310_mainproject/Screens/Login/Login.dart';
+import 'package:cs310_mainproject/Screens/Welcome/welcome_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../Object Classes/colors.dart';
@@ -14,6 +16,7 @@ class _NFTPageState extends State<NFTPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    final FirebaseAuth _auth = FirebaseAuth.instance;
 
       return SingleChildScrollView(
         child: Column(
@@ -22,10 +25,11 @@ class _NFTPageState extends State<NFTPage> {
               children: [
                 Container(
                   padding: const EdgeInsets.only(top: 25, left: 10,),
-                  child: FloatingActionButton(onPressed: (){
+                  child: FloatingActionButton(onPressed: () async {
+                    await _auth.signOut();
                     Navigator.pop(context, MaterialPageRoute(builder: (context){
-                      return Login();
-                    }));
+                      return WelcomeScreen();
+                    }));  //Use navigatorpushandremoveuntil !!!
                   },
                     backgroundColor: AppColor.SecondMainColor,
                     child: const Icon(Icons.logout,color: Colors.black,),),
