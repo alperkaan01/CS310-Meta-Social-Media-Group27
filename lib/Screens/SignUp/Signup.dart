@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cs310_mainproject/Object%20Classes/auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cs310_mainproject/Object%20Classes/colors.dart' as color;
@@ -20,10 +21,25 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   late String username;
   late String name;
-  late String password;
+  late String pass;
   late String email;
   late String surname;
   final _formKey = GlobalKey<FormState>();
+  final AuthService _auth = AuthService();
+
+  Future RegisterUser() async {
+    dynamic result = await  _auth.registerUserWithEmailPass(email, pass);
+    if(result is String){
+      _showDialog('Sign Up Error', result);
+
+    }else{
+      Navigator.push(context, MaterialPageRoute(builder: (context){
+        return Login();
+      }));
+
+    }
+
+  }
 
   Future<void> _showDialog(String title, String message) async{
     bool isAndroid = Platform.isAndroid;
@@ -385,7 +401,7 @@ class _SignUpState extends State<SignUp> {
                                       }
                                     },
                                     onSaved: (value){
-                                      password =  value ?? '';
+                                      pass =  value ?? '';
 
 
                                     },
@@ -407,9 +423,7 @@ class _SignUpState extends State<SignUp> {
 
                                     _formKey.currentState!.save();
                                     //Navigator push login
-                                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                                      return Login();
-                                    }));
+                                    await RegisterUser();
 
 
 
