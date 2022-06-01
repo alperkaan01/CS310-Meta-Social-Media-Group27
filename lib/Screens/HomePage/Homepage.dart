@@ -6,7 +6,7 @@ import 'package:cs310_mainproject/Screens/Profile/Profile_posts.dart';
 import 'package:flutter/material.dart';
 
 import '../../Object Classes/colors.dart';
-import 'discover.dart';
+
 import 'nft_page.dart';
 bool _isDarkMode = false;
 
