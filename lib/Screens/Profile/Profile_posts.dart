@@ -129,7 +129,7 @@ class _ProfileState extends State<Profile> {
                           children: [
                             Container(
                               padding: const EdgeInsets.only(top: 20),
-                              child: Image.asset('assets/avatar.png'),
+                              child: Image.asset('assets/images/avatar.png'),
                               height: 190,
                               width: 200,
                             ),
