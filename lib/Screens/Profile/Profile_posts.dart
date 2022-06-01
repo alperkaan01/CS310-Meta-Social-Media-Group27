@@ -15,14 +15,14 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   List<Post> posts = [
-    Post( URL: "https://www.animalfriends.co.uk/siteassets/media/images/article-images/cat-articles/38_afi_article1_caring-for-a-kitten-tips-for-the-first-month.png",text: 'Hello MetaWorld 1', date: 'March 31', likes: 10, comments: 0),
-    Post( URL: "https://kitcheninred.com/wp-content/uploads/2020/06/%C3%A7ikolatal%C4%B1-pasta-1-scaled.jpg",text: 'Hello MetaWorld 2', date: 'March 30', likes: 0, comments: 5),
-    Post( URL: "https://i.pinimg.com/originals/62/f1/65/62f165cebd814ec81f1e5a324eecbdd1.jpg", text: 'Hello MetaWorld 3', date: 'March 29', likes: 20, comments: 10),
+    Post( URL: "https://www.animalfriends.co.uk/siteassets/media/images/article-images/cat-articles/38_afi_article1_caring-for-a-kitten-tips-for-the-first-month.png",text: 'Hello MetaWorld 1', date: 'March 31', likes: 10, comments: 0,UserURL: 'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif' ,username: 'User62'),
+    Post( URL: "https://kitcheninred.com/wp-content/uploads/2020/06/%C3%A7ikolatal%C4%B1-pasta-1-scaled.jpg",text: 'Hello MetaWorld 2', date: 'March 30', likes: 0, comments: 5,UserURL: 'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif' ,username: 'User62'),
+    Post( URL: "https://i.pinimg.com/originals/62/f1/65/62f165cebd814ec81f1e5a324eecbdd1.jpg", text: 'Hello MetaWorld 3', date: 'March 29', likes: 20, comments: 10,UserURL: 'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif' ,username: 'User62'),
   ];
   List<NFT> nfts = [
-    NFT( URL: "https://jingculturecommerce.com/wp-content/uploads/2021/11/rtfkt-murakami-clone-x-2-1240x826.jpg",text: 'Hello MetaWorld 1', date: 'March 31', likes: 10, money: 1000),
-    NFT( URL: "https://www.presse-citron.net/app/uploads/2022/03/bored-ape-metavers-yuga-labs.jpg",text: 'Hello MetaWorld 2', date: 'March 30', likes: 0, money: 750),
-    NFT( URL: "https://cryptopotato.com/wp-content/uploads/2022/01/img3_cryptopunks.jpg", text: 'Hello MetaWorld 3', date: 'March 29', likes: 20, money: 600),
+    NFT( URL: "https://jingculturecommerce.com/wp-content/uploads/2021/11/rtfkt-murakami-clone-x-2-1240x826.jpg", UserURL: 'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif' ,text: 'Hello MetaWorld 1', date: 'March 31', likes: 10, money: 1000,username: 'User62'),
+    NFT( URL: "https://www.presse-citron.net/app/uploads/2022/03/bored-ape-metavers-yuga-labs.jpg",UserURL: 'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif' ,text: 'Hello MetaWorld 2', date: 'March 30', likes: 0, money: 750,username: 'User62'),
+    NFT( URL: "https://cryptopotato.com/wp-content/uploads/2022/01/img3_cryptopunks.jpg", UserURL: 'https://support.signal.org/hc/article_attachments/360083910451/animated-2.gif', text: 'Hello MetaWorld 3', date: 'March 29', likes: 20, money: 600,username: 'User93'),
   ];
   int currentIndex = 0;
 
