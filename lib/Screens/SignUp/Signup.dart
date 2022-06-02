@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import '../Login/Login.dart';
 
@@ -17,6 +19,8 @@ class SignUp extends StatefulWidget {
   @override
   State<SignUp> createState() => _SignUpState();
 }
+
+FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 class _SignUpState extends State<SignUp> {
   late String username;
@@ -38,7 +42,19 @@ class _SignUpState extends State<SignUp> {
       }));
 
     }
+  }
 
+
+  CollectionReference users = FirebaseFirestore.instance.collection('User');
+
+  Future AddUser(String username, String name,String surname, String email, String password) {
+    return users.add({
+      'username': username,
+      'name': name,
+      'surname': surname,
+      'email': email,
+      'password': password,
+    });
   }
 
   Future<void> _showDialog(String title, String message) async{
@@ -424,9 +440,7 @@ class _SignUpState extends State<SignUp> {
                                     _formKey.currentState!.save();
                                     //Navigator push login
                                     await RegisterUser();
-
-
-
+                                    AddUser(username, name, surname, email, pass);
 
                                   }
                                   else{
