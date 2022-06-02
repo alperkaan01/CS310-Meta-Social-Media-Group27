@@ -8,6 +8,14 @@ import '../Screens/HomePage/Homepage.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  User? _userFromFirebase(User? user){
+    return user;
+  }
+
+  Stream<User?> get user{
+    return _auth.authStateChanges().map(_userFromFirebase);
+  }
+
   Future<dynamic> SignInWithEmailPass(String email, String password) async {
     bool isPass = true;
 
