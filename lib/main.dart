@@ -1,16 +1,20 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:cs310_mainproject/Screens/HomePage/Homepage.dart';
+import 'package:cs310_mainproject/Screens/Profile/Profile_posts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'Object Classes/auth.dart';
 import 'Object Classes/colors.dart' as color;
 import 'package:cs310_mainproject/Screens/Welcome/welcome_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(OurFireBaseApp());
+  runApp(MaterialApp(home: OurFireBaseApp()));
 
 
 }
@@ -36,7 +40,7 @@ class SplashScreen extends StatelessWidget {
 
 
 class MyApp extends StatefulWidget {
-   MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
   final Future<FirebaseApp> _init = Firebase.initializeApp();
 
   @override
@@ -143,7 +147,7 @@ class _WalkthroughState extends State<Walkthrough> {
     TextButton(
       style: TextButton.styleFrom(
         shape: RoundedRectangleBorder(
-            //borderRadius: BorderRadius.circular(90)
+          //borderRadius: BorderRadius.circular(90)
         ),
         primary: color.AppColor.homePageBackground,
         backgroundColor: color.AppColor.SecondMainColor,
@@ -203,14 +207,41 @@ class OurFireBaseApp extends StatelessWidget {
 
           }
           if(snapshot.connectionState == ConnectionState.done){
-            return MyApp();
-
+            //return MyApp();
+            return StreamProvider<User?>.value(
+              value: AuthService().user,
+              initialData: null,
+              child: AuthenticationStatus(),
+            );
           }
           return WaitingScreen();
 
         });
   }
 }
+
+class AuthenticationStatus extends StatefulWidget {
+  const AuthenticationStatus({Key? key}) : super(key: key);
+
+  @override
+  State<AuthenticationStatus> createState() => _AuthenticationStatusState();
+}
+
+class _AuthenticationStatusState extends State<AuthenticationStatus> {
+  @override
+  Widget build(BuildContext context) {
+    final user = Provider.of<User?>(context);
+    if(user == null){
+      return WelcomeScreen();
+    }
+    else{
+      return HomePage();
+    }
+  }
+}
+
+
+
 class ErrorScreen extends StatelessWidget {
   ErrorScreen({Key? key, required this.message}) : super(key: key);
 
@@ -237,7 +268,7 @@ class WaitingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Text('Connecting Aga'),
+      child: const Text('Connecting Aga'),
     );
   }
 }
