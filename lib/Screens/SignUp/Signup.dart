@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cs310_mainproject/Object%20Classes/auth.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cs310_mainproject/Object%20Classes/colors.dart' as color;
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import '../Login/Login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
+
 
   @override
   State<SignUp> createState() => _SignUpState();
