@@ -1,8 +1,10 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cs310_mainproject/Screens/HomePage/Homepage.dart';
 import 'package:cs310_mainproject/Screens/Profile/Profile_posts.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'Object Classes/auth.dart';
 import 'Object Classes/colors.dart' as color;
@@ -11,16 +13,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-void main(){
-  WidgetsFlutterBinding.ensureInitialized();
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 
-  runApp(MaterialApp(home: OurFireBaseApp()));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
+
+  FirebaseAnalyticsObserver appAnalyticsObserver() => FirebaseAnalyticsObserver(analytics: analytics);
+
+  runApp(MaterialApp(
+      home: OurFireBaseApp(analytics: analytics , observer: appAnalyticsObserver(),)
+  ));
 
 
 }
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({Key? key, required this.analytics, required this.observer}) : super(key: key);
 
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +43,7 @@ class SplashScreen extends StatelessWidget {
       splash: Lottie.network("https://assets10.lottiefiles.com/private_files/lf30_fhbalxer.json"),
       splashIconSize: 2000,
       //backgroundColor: Colors.deepPurpleAccent,
-      nextScreen: const WelcomeScreen(),
+      nextScreen: WelcomeScreen(analytics: analytics, observer: observer,),
       //nextScreen: const ProfileEdit(),
       animationDuration: const Duration(seconds: 3,),
       backgroundColor: color.AppColor.WelcomeBackground,
@@ -40,8 +55,11 @@ class SplashScreen extends StatelessWidget {
 
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key, required this.analytics, required this.observer}) : super(key: key);
   final Future<FirebaseApp> _init = Firebase.initializeApp();
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -61,8 +79,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+
     // TODO: implement initState
     super.initState();
+
     decideRoute();
   }
 
@@ -78,7 +98,7 @@ class _MyAppState extends State<MyApp> {
           primaryColor: color.AppColor.secondPageTopIconColor,
           scaffoldBackgroundColor: color.AppColor.WelcomeBackground,
         ),
-        home: Walkthrough(),
+        home: Walkthrough(analytics: widget.analytics, observer: widget.observer,),
       );
     } else {
       return MaterialApp(
@@ -87,7 +107,7 @@ class _MyAppState extends State<MyApp> {
           primaryColor: color.AppColor.secondPageTopIconColor,
           scaffoldBackgroundColor: color.AppColor.WelcomeBackground,
         ),
-        home: SplashScreen(),
+        home: SplashScreen(analytics: widget.analytics,observer: widget.observer,),
       );
     }
   }
@@ -96,7 +116,10 @@ class _MyAppState extends State<MyApp> {
 
 
 class Walkthrough extends StatefulWidget {
-  const Walkthrough({Key? key}) : super(key: key);
+  const Walkthrough({Key? key, required this.analytics, required this.observer}) : super(key: key);
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
 
   @override
   State<Walkthrough> createState() => _WalkthroughState();
@@ -154,7 +177,7 @@ class _WalkthroughState extends State<Walkthrough> {
         minimumSize: const Size.fromHeight(80),
       ),
       onPressed: () async {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> WelcomeScreen() ) ,
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> WelcomeScreen(analytics: widget.analytics,observer: widget.observer,) ) ,
 
         );
       },
@@ -195,7 +218,13 @@ class _WalkthroughState extends State<Walkthrough> {
 }
 class OurFireBaseApp extends StatelessWidget {
 
+  OurFireBaseApp({Key? key, required this.analytics, required this.observer}) : super(key: key);
+
   final Future<FirebaseApp> _init = Firebase.initializeApp();
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
+
 
   @override
   Widget build(BuildContext context) {
@@ -211,17 +240,20 @@ class OurFireBaseApp extends StatelessWidget {
             return StreamProvider<User?>.value(
               value: AuthService().user,
               initialData: null,
-              child: AuthenticationStatus(),
+              child: AuthenticationStatus(analytics: analytics,observer: observer,),
             );
           }
-          return WaitingScreen();
+          return const WaitingScreen();
 
         });
   }
 }
 
 class AuthenticationStatus extends StatefulWidget {
-  const AuthenticationStatus({Key? key}) : super(key: key);
+  const AuthenticationStatus({Key? key, required this.analytics, required this.observer}) : super(key: key);
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
 
   @override
   State<AuthenticationStatus> createState() => _AuthenticationStatusState();
@@ -232,10 +264,10 @@ class _AuthenticationStatusState extends State<AuthenticationStatus> {
   Widget build(BuildContext context) {
     final user = Provider.of<User?>(context);
     if(user == null){
-      return WelcomeScreen();
+      return WelcomeScreen(analytics: widget.analytics, observer: widget.observer,);
     }
     else{
-      return HomePage();
+      return HomePage(analytics: widget.analytics, observer: widget.observer,);
     }
   }
 }
