@@ -51,6 +51,8 @@ dependencies:
   firebase_storage: ^10.2.4
   firebase_analytics: ^9.1.5
   firebase_crashlytics: ^2.8.1
+  image_picker: ^0.8.4+4
+
 
 
 dev_dependencies:
