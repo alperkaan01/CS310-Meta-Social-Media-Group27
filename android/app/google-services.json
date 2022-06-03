@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "668006502036",
+    "project_id": "cs310-proj-aayeo",
+    "storage_bucket": "cs310-proj-aayeo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668006502036:android:3ae64babd6b82cc8ec2e81",
+        "android_client_info": {
+          "package_name": "com.example.cs310_mainproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668006502036-pi7qc5rooi3en396pgv3boqiea73ofkk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJxo5UI3prNT0HLHO8mCrZTdxtEJoJPSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668006502036-pi7qc5rooi3en396pgv3boqiea73ofkk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
