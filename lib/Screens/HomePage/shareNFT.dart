@@ -1,5 +1,9 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
+import 'dart:io';
 
 
 
@@ -12,6 +16,34 @@ class ShareNFT extends StatefulWidget {
 }
 
 class _ShareNFTState extends State<ShareNFT> {
+
+  final ImagePicker _picker = ImagePicker();
+  XFile? _image;
+
+  Future pickImage() async{
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = pickedFile;
+    });
+
+  }
+  Future uploadImageToFirebase(BuildContext context) async{
+    String fileName = basename(_image!.path);
+    Reference firebaseStorageRef = FirebaseStorage.instance.ref().child('Nft/$fileName');
+    try{
+
+      await firebaseStorageRef.putFile(File(_image!.path));
+      print('Upload Complete');
+      setState(() {
+        _image = null;
+      });
+
+    } on FirebaseException catch(e){
+      print('ERROR: ${e.code} - ${e.message}');
+    }catch(e){
+      print(e.toString());
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,10 +59,19 @@ class _ShareNFTState extends State<ShareNFT> {
 
                 borderRadius: BorderRadius.circular(40),
               ),
-              child: IconButton(
-                onPressed: (){},
-                icon: Icon(Icons.diamond,size: 100,),
-              ),
+                child: ClipRRect(
+
+                    borderRadius: BorderRadius.circular(50),
+
+                    child: _image != null
+                        ? Image.file(File(_image!.path),width: 375,height: 250,) : TextButton(
+                        onPressed: pickImage,
+                        child: const Icon(
+                          Icons.diamond,
+                          size: 100,
+                          color: Colors.black,
+                        ))
+                )
             )
           ],
         ),
@@ -129,7 +170,7 @@ class _ShareNFTState extends State<ShareNFT> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              if(_image !=null) Container(
                 width: 140,
                 height: 50,
                 decoration: BoxDecoration(
@@ -139,7 +180,7 @@ class _ShareNFTState extends State<ShareNFT> {
                 ),
                 child: FlatButton(
                   onPressed: () {
-
+                    uploadImageToFirebase(context);
                   },
                   child: Text("SEND", style: TextStyle(fontSize: 20,
                     color: Colors.white,
