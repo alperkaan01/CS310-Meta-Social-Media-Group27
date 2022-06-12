@@ -29,7 +29,7 @@ class _SharePostState extends State<SharePost> {
 }
 Future uploadImageToFirebase(BuildContext context) async{
     String fileName = basename(_image!.path);
-    Reference firebaseStorageRef = FirebaseStorage.instance.ref().child('User/posts/$fileName');
+    Reference firebaseStorageRef = FirebaseStorage.instance.ref().child('posts/$fileName');
     try{
       
     await firebaseStorageRef.putFile(File(_image!.path));
